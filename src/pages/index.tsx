@@ -1,6 +1,7 @@
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { type NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useState } from "react";
 import { createContextInner } from "../server/trpc/context";
 import { cardsRouter } from "../server/trpc/router/cards";
@@ -61,7 +62,8 @@ const Home: NextPage = () => {
 						)}
 						{cards.data ? (
 							<p>
-								Cards found for {`"${lang}"`}: {cards.data.count}
+								Cards found for <Link href={`/c/${lang}`}>{`"${lang}"`}</Link>:
+								{" " + cards.data.count}
 							</p>
 						) : (
 							<p>Loading {`"${lang}"`} cards count...</p>

@@ -13,7 +13,7 @@ const LangCards: NextPage = () => {
 			<>
 				<Head>
 					<title>Blitzcardmon</title>
-					<meta name="description" content="Invalid language query" />
+					<meta name="description" content="Blitznom's language cards" />
 				</Head>
 				<main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-purple-800 to-violet-900 p-4">
 					<div className="container mx-auto flex flex-col items-center justify-center text-purple-400">
@@ -63,10 +63,13 @@ const RenderCards: React.FC<{ cards: LanguageCard[] }> = ({ cards }) => {
 			{cards.map((c, i) => {
 				if (!c.means.en) return undefined;
 				const SubTitle = (str: string) => <h3 className="text-2xl">{str}</h3>;
-				const content: (string | JSX.Element)[] = [c.learn];
+				const content: (string | JSX.Element)[] = [];
+				content.push(SubTitle("Writings"));
 				if (c.alternatives.length > 0) {
-					content.push(SubTitle("Variations"));
-					content.push(c.alternatives.join(" / "));
+					const writings = [c.learn].concat(c.alternatives);
+					content.push(writings.join(" / "));
+				} else {
+					content.push(c.learn);
 				}
 				content.push(SubTitle("Accentuation"));
 				content.push(c.pronounce);
