@@ -46,7 +46,7 @@ export default LangCards;
 
 const RenderCards:React.FC<{ cards:LanguageCard[] }> = ({ cards }) => {
 	return (
-		<div className="container mx-auto grid md:grid-cols-2 pt-5 grid-cols-1 gap-4">
+		<div className="grid md:grid-cols-2 pt-5 grid-cols-1 gap-4">
 			{
 				cards.map((c, i) => {
 					if (!c.means.en) return undefined;
