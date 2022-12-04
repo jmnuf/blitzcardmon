@@ -1,18 +1,14 @@
 import { createProxySSGHelpers } from '@trpc/react-query/ssg';
-import type { InferGetServerSidePropsType } from "next";
 import { type NextPage } from "next";
-
 import Head from "next/head";
 import { useState } from "react";
-
 import { createContextInner } from '../server/trpc/context';
 import { cardsRouter } from "../server/trpc/router/cards";
 import { trpc } from "../utils/trpc";
 
 const NAMES = ["Blitzcardmon", "Blitznom", "Blitzcard"] as const;
 
-const Home: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (props) => {
-	console.log(props.trpcState.queries);
+const Home: NextPage = () => {
 	const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
 	const languages = trpc.cards.languages.useQuery();
 	const [nameIndex, setNameIndex] = useState(0);
@@ -70,7 +66,7 @@ export const getServerSideProps = async () => {
 		router: cardsRouter,
 	});
 	await ssg.languages.prefetch();
-
+	
 	return {
 		props: {
 			trpcState: ssg.dehydrate(),

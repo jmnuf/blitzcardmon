@@ -1,4 +1,5 @@
 import { readFile } from "fs/promises";
+import { env } from "process";
 import { z } from "zod";
 
 import { publicProcedure, router } from "../trpc";
@@ -11,7 +12,13 @@ interface LanguageCard {
 }
 
 const readData = async () => {
-	const rawData = await readFile("src/server/data/cards.json", { encoding: "utf-8" });
+	const baseURL = env.VERCEL_URL ? env.VERCEL_URL : "localhost:3000";
+	if (env.NODE_ENV == "development" || baseURL == "localhost:3000") {
+		const rawData = await readFile("./public/data/cards.json", { encoding: "utf-8" });
+		const data = JSON.parse(rawData) as Record<string, LanguageCard[]>;
+		return data;
+	}
+	const rawData = await (await fetch(baseURL + "/data/cards.json")).text();
 	const data = JSON.parse(rawData) as Record<string, LanguageCard[]>;
 	return data;
 };
