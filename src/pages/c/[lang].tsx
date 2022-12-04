@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import Card from "../../components/card";
 import type { LanguageCard } from "../../server/data/cards";
@@ -35,6 +36,12 @@ const LangCards: NextPage = () => {
 
 			<main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-purple-800 to-violet-900 p-4">
 				<div className="container mx-auto flex flex-col items-center justify-center text-purple-400">
+					<Link
+						className="rounded-md py-1 px-2 text-violet-400 outline outline-2 outline-slate-600 transition-colors hover:bg-purple-300 hover:text-violet-900"
+						href={"/"}
+					>
+						Home
+					</Link>
 					<h1 className="text-center text-5xl font-extrabold leading-normal text-purple-300 md:text-[5rem]">
 						{lang.substring(0, 1).toUpperCase().concat(lang.substring(1))} Cards
 					</h1>
