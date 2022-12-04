@@ -62,7 +62,8 @@ const Home: NextPage = () => {
 						)}
 						{cards.data ? (
 							<p>
-								Cards found for <Link href={`/c/${lang}`}>{`"${lang}"`}</Link>:
+								Cards found for{" "}
+								<Link href={`/study/${lang}`}>{`"${lang}"`}</Link>:
 								{" " + cards.data.count}
 							</p>
 						) : (
