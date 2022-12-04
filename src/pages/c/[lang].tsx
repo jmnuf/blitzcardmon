@@ -24,7 +24,7 @@ const LangCards: NextPage = () => {
 						{lang.substring(0, 1).toUpperCase().concat(lang.substring(1))} Cards
 					</h1>
 					<div className="mt-3 flex flex-col"></div>
-					<div className="flex flex-col w-full items-center justify-center pt-6 text-2xl">
+					<div className="flex flex-col w-full items-center justify-center py-6 text-2xl">
 						<p>{
 							cards.isError
 							? `Failed to get cards for language ${lang}. Possibly unsupported`
@@ -46,13 +46,17 @@ export default LangCards;
 
 const RenderCards:React.FC<{ cards:LanguageCard[] }> = ({ cards }) => {
 	return (
-		<div className="grid md:grid-cols-2 pt-5 grid-cols-1 gap-4">
+		<div className="grid md:grid-cols-3 pt-5 grid-cols-1 gap-4">
 			{
 				cards.map((c, i) => {
 					if (!c.means.en) return undefined;
 					const SubTitle = (str:string) => <h3 className="text-2xl">{str}</h3>;
-					const content:(string|JSX.Element)[] = [];
-					content.push(SubTitle("Pronounciation"));
+					const content:(string|JSX.Element)[] = [c.learn];
+					if (c.alternatives.length > 0) {
+						content.push(SubTitle("Variations"));
+						content.push(c.alternatives.join(" / "));
+					}
+					content.push(SubTitle("Accentuation"));
 					content.push(c.pronounce);
 					content.push(SubTitle("Means"));
 					if (c.means.en.length > 1) {
