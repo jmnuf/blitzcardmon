@@ -3,7 +3,7 @@ import { cardsRouter } from "./cards";
 import { exampleRouter } from "./example";
 
 export const appRouter = router({
-  example: exampleRouter,
+	example: exampleRouter,
 	cards: cardsRouter,
 });
 

@@ -18,23 +18,21 @@ const LangCards: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<main className="min-h-screen w-full bg-gradient-to-b from-purple-800 to-violet-900 flex flex-col items-center justify-center p-4">
+			<main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-purple-800 to-violet-900 p-4">
 				<div className="container mx-auto flex flex-col items-center justify-center text-purple-400">
-					<h1 className="text-5xl font-extrabold text-center leading-normal text-purple-300 md:text-[5rem]">
+					<h1 className="text-center text-5xl font-extrabold leading-normal text-purple-300 md:text-[5rem]">
 						{lang.substring(0, 1).toUpperCase().concat(lang.substring(1))} Cards
 					</h1>
 					<div className="mt-3 flex flex-col"></div>
-					<div className="flex flex-col w-full items-center justify-center py-6 text-2xl">
-						<p>{
-							cards.isError
-							? `Failed to get cards for language ${lang}. Possibly unsupported`
-							: cards.data ? `Got ${cards.data.count} ${lang} cards` : "Loading cards..."
-						}</p>
-						{
-							cards.data
-							? <RenderCards cards={cards.data.cards} />
-							: undefined
-						}
+					<div className="flex w-full flex-col items-center justify-center py-6 text-2xl">
+						<p>
+							{cards.isError
+								? `Failed to get cards for language ${lang}. Possibly unsupported`
+								: cards.data
+								? `Got ${cards.data.count} ${lang} cards`
+								: "Loading cards..."}
+						</p>
+						{cards.data ? <RenderCards cards={cards.data.cards} /> : undefined}
 					</div>
 				</div>
 			</main>
@@ -44,32 +42,29 @@ const LangCards: NextPage = () => {
 
 export default LangCards;
 
-const RenderCards:React.FC<{ cards:LanguageCard[] }> = ({ cards }) => {
+const RenderCards: React.FC<{ cards: LanguageCard[] }> = ({ cards }) => {
 	return (
-		<div className="grid md:grid-cols-3 pt-5 grid-cols-1 gap-4">
-			{
-				cards.map((c, i) => {
-					if (!c.means.en) return undefined;
-					const SubTitle = (str:string) => <h3 className="text-2xl">{str}</h3>;
-					const content:(string|JSX.Element)[] = [c.learn];
-					if (c.alternatives.length > 0) {
-						content.push(SubTitle("Variations"));
-						content.push(c.alternatives.join(" / "));
-					}
-					content.push(SubTitle("Accentuation"));
-					content.push(c.pronounce);
-					content.push(SubTitle("Means"));
-					if (c.means.en.length > 1) {
-						content.push(c.means.en.join(" / "));
-					} else if (c.means.en.length == 1) {
-						content.push(c.means.en[0] as string);
-					} else {
-						content.push(<span className="text-red-600">No meanings set</span>);
-					}
-					return <Card key={i} title={c.learn} contents={content} />
-				})
-			}
+		<div className="grid grid-cols-1 gap-4 pt-5 md:grid-cols-3">
+			{cards.map((c, i) => {
+				if (!c.means.en) return undefined;
+				const SubTitle = (str: string) => <h3 className="text-2xl">{str}</h3>;
+				const content: (string | JSX.Element)[] = [c.learn];
+				if (c.alternatives.length > 0) {
+					content.push(SubTitle("Variations"));
+					content.push(c.alternatives.join(" / "));
+				}
+				content.push(SubTitle("Accentuation"));
+				content.push(c.pronounce);
+				content.push(SubTitle("Means"));
+				if (c.means.en.length > 1) {
+					content.push(c.means.en.join(" / "));
+				} else if (c.means.en.length == 1) {
+					content.push(c.means.en[0] as string);
+				} else {
+					content.push(<span className="text-red-600">No meanings set</span>);
+				}
+				return <Card key={i} title={c.learn} contents={content} />;
+			})}
 		</div>
-	)
-}
-
+	);
+};

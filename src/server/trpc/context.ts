@@ -12,7 +12,7 @@ type CreateContextOptions = Record<string, never>;
  * @see https://beta.create.t3.gg/en/usage/trpc#-servertrpccontextts
  **/
 export const createContextInner = async (opts: CreateContextOptions) => {
-  return {};
+	return {};
 };
 
 /**
@@ -20,7 +20,7 @@ export const createContextInner = async (opts: CreateContextOptions) => {
  * @link https://trpc.io/docs/context
  **/
 export const createContext = async (opts: CreateNextContextOptions) => {
-  return await createContextInner({});
+	return await createContextInner({});
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;
