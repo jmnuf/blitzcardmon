@@ -7,7 +7,22 @@ import { trpc } from "../../utils/trpc";
 
 const LangCards: NextPage = () => {
 	const router = useRouter();
-	const lang = router.query.lang as string;
+	const lang = router.query.lang;
+	if (typeof lang !== "string") {
+		return (
+			<>
+				<Head>
+					<title>Blitzcardmon</title>
+					<meta name="description" content="Invalid language query" />
+				</Head>
+				<main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-purple-800 to-violet-900 p-4">
+					<div className="container mx-auto flex flex-col items-center justify-center text-purple-400">
+						<p>Unexpected request</p>
+					</div>
+				</main>
+			</>
+		);
+	}
 	const cards = trpc.cards.langCards.useQuery({ language: lang });
 
 	return (
