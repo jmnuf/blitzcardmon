@@ -8,6 +8,11 @@
     "lint": "next lint",
     "start": "next start"
   },
+	"license": "MIT",
+	"author": {
+		"name": "Jose Marco",
+		"email": "jose.m.nufio.0@gmail.com"
+	},
   "dependencies": {
     "@tanstack/react-query": "^4.10.0",
     "@trpc/client": "10.0.0-rc.4",
