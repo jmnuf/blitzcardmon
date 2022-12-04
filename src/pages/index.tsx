@@ -6,7 +6,7 @@ import { createContextInner } from '../server/trpc/context';
 import { cardsRouter } from "../server/trpc/router/cards";
 import { trpc } from "../utils/trpc";
 
-const NAMES = ["Blitzcardmon", "Blitznom", "Blitzcard"] as const;
+const NAMES = ["Blitzcardmon", "Blitznom", "Blitzcard", "Blitzmon"] as const;
 
 const Home: NextPage = () => {
 	const hello = trpc.example.hello.useQuery({ text: "from tRPC" });

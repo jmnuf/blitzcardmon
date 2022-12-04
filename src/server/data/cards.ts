@@ -22,6 +22,17 @@ const cards = {
 					"to like"
 				]
 			}
+		},
+		{
+			"learn": "八",
+			"alternatives": [],
+			"pronounce": "bā",
+			"means": {
+				"en": [
+					"eight",
+					"8",
+				]
+			}
 		}
 	] as LanguageCard[]
 } as const;
