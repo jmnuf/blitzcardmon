@@ -1,0 +1,2 @@
+PROMPT $$^(blitzcardmon^).
+TITLE Blitzcardmon
