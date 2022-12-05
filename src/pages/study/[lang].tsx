@@ -1,4 +1,8 @@
-import type { NextPage } from "next";
+import type {
+	GetServerSideProps,
+	InferGetServerSidePropsType,
+	NextPage,
+} from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -6,9 +10,14 @@ import Card from "../../components/card";
 import type { LanguageCard } from "../../server/data/cards";
 import { trpc } from "../../utils/trpc";
 
-const LangCards: NextPage = () => {
+const LangCards: NextPage<
+	InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ language }) => {
 	const router = useRouter();
-	const lang = router.query.lang;
+	const lang =
+		typeof router.query.lang !== "string" && language
+			? language
+			: router.query.lang;
 	if (typeof lang !== "string") {
 		return (
 			<>
@@ -92,4 +101,22 @@ const RenderCards: React.FC<{ cards: LanguageCard[] }> = ({ cards }) => {
 			})}
 		</div>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps<{
+	language: string | null;
+}> = async (ctx) => {
+	let lang = null;
+	if (ctx.params) {
+		if (typeof ctx.params.lang === "string") {
+			lang = ctx.params.lang;
+		} else if (typeof ctx.params.lang == "object") {
+			lang = ctx.params.lang[0] as string;
+		}
+	}
+	return {
+		props: {
+			language: lang,
+		},
+	};
 };
