@@ -1,4 +1,8 @@
-import type { LanguageCard } from "./cards";
+import type { Language, LanguageCard, LanguageConfig } from "./cards";
+
+const config: LanguageConfig = {
+	accentName: "Pinyin",
+};
 
 const cards: LanguageCard[] = [
 	{
@@ -129,4 +133,9 @@ const cards: LanguageCard[] = [
 	},
 ];
 
-export default cards;
+const mandarin: Language = {
+	cards,
+	config,
+};
+
+export default mandarin;

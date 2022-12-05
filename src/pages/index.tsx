@@ -19,17 +19,14 @@ const Home: NextPage = () => {
 	const [langIndex, setLangIndex] = useState(0);
 	const cardLanguages = languages.data;
 
-	console.log(cardLanguages);
-	console.log({
-		isError: languages.isError,
-		isLoading: languages.isLoading,
-	});
-
 	const name = NAMES[nameIndex];
 	const lang = cardLanguages
 		? cardLanguages[langIndex] ?? "mandarin"
 		: "mandarin";
-	const cards = trpc.cards.langCards.useQuery({ language: lang });
+	const query = trpc.cards.langCards.useQuery(
+		{ language: lang },
+		{ keepPreviousData: true, staleTime: Infinity }
+	);
 	if (cardLanguages && cardLanguages.length > 1) {
 		setTimeout(() => {
 			setLangIndex((langIndex + 1) % cardLanguages.length);
@@ -60,11 +57,11 @@ const Home: NextPage = () => {
 						) : (
 							<p>Loading salute..</p>
 						)}
-						{cards.data ? (
+						{query.data ? (
 							<p>
 								Cards found for{" "}
 								<Link href={`/study/${lang}`}>{`"${lang}"`}</Link>:
-								{" " + cards.data.count}
+								{" " + query.data.cardsCount}
 							</p>
 						) : (
 							<p>Loading {`"${lang}"`} cards count...</p>

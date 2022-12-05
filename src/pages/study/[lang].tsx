@@ -7,7 +7,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Card from "../../components/card";
-import type { LanguageCard } from "../../server/data/cards";
+import type { Language } from "../../server/data/cards";
 import { trpc } from "../../utils/trpc";
 
 const LangCards: NextPage<
@@ -33,7 +33,7 @@ const LangCards: NextPage<
 			</>
 		);
 	}
-	const cards = trpc.cards.langCards.useQuery({ language: lang });
+	const query = trpc.cards.langCards.useQuery({ language: lang });
 
 	return (
 		<>
@@ -57,13 +57,15 @@ const LangCards: NextPage<
 					<div className="mt-3 flex flex-col"></div>
 					<div className="flex w-full flex-col items-center justify-center py-6 text-2xl">
 						<p>
-							{cards.isError
+							{query.isError
 								? `Failed to get cards for language ${lang}. Possibly unsupported`
-								: cards.data
-								? `Got ${cards.data.count} ${lang} cards`
+								: query.data
+								? `Got ${query.data.cardsCount} ${lang} cards`
 								: "Loading cards..."}
 						</p>
-						{cards.data ? <RenderCards cards={cards.data.cards} /> : undefined}
+						{query.data ? (
+							<RenderCards languageData={query.data.lang} />
+						) : undefined}
 					</div>
 				</div>
 			</main>
@@ -73,12 +75,19 @@ const LangCards: NextPage<
 
 export default LangCards;
 
-const RenderCards: React.FC<{ cards: LanguageCard[] }> = ({ cards }) => {
+const RenderCards: React.FC<{ languageData: Language }> = ({
+	languageData,
+}) => {
+	const { cards, config } = languageData;
 	return (
 		<div className="grid grid-cols-1 gap-4 pt-5 md:grid-cols-3">
 			{cards.map((c, i) => {
 				if (!c.means.en) return undefined;
-				const SubTitle = (str: string) => <h3 className="text-2xl">{str}</h3>;
+				const SubTitle = (str: string, title?: string) => (
+					<h3 className="text-2xl" title={title}>
+						{str}
+					</h3>
+				);
 				const content: (string | JSX.Element)[] = [];
 				content.push(SubTitle("Writings"));
 				if (c.alternatives.length > 0) {
@@ -87,7 +96,11 @@ const RenderCards: React.FC<{ cards: LanguageCard[] }> = ({ cards }) => {
 				} else {
 					content.push(c.learn);
 				}
-				content.push(SubTitle("Accentuation"));
+				if (config.accentName) {
+					content.push(SubTitle(config.accentName, "Accent"));
+				} else {
+					content.push(SubTitle("Accent"));
+				}
 				content.push(c.pronounce);
 				content.push(SubTitle("Means"));
 				if (c.means.en.length > 1) {
