@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Language, Languages } from "../../data/cards";
+import type { Languages } from "../../data/cards";
 import cards from "../../data/cards";
 
 import { publicProcedure, router } from "../trpc";
@@ -24,11 +24,8 @@ export const cardsRouter = router({
 				throw new Error(`Language "${input.language}" not supported`);
 			}
 			const data = await readLang(input.language);
-			if (data.language) {
-				const lang = data.language;
-				const count = data.language.cards.length;
-				return { lang, cardsCount: count };
-			}
-			throw new Error("Unexpected error while attempting to get language");
+			const lang = data.language;
+			const count = data.language.cards.length;
+			return { lang, cardsCount: count };
 		}),
 });

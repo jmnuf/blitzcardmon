@@ -24,6 +24,8 @@ const LangCards: NextPage<
 				<Head>
 					<title>Blitzcardmon</title>
 					<meta name="description" content="Blitznom's language cards" />
+					<link rel="icon" href="/favicon.ico" />
+					<link rel="manifest" href="/manifest.webmanifest" />
 				</Head>
 				<main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-purple-800 to-violet-900 p-4">
 					<div className="container mx-auto flex flex-col items-center justify-center text-purple-400">
@@ -41,6 +43,7 @@ const LangCards: NextPage<
 				<title>Blitzcardmon</title>
 				<meta name="description" content={`Blitznom's ${lang} cards`} />
 				<link rel="icon" href="/favicon.ico" />
+				<link rel="manifest" href="/manifest.webmanifest" />
 			</Head>
 
 			<main className="flex min-h-screen w-full flex-col items-center justify-center bg-gradient-to-b from-purple-800 to-violet-900 p-4">
