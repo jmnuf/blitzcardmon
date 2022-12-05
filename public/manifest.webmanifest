@@ -1,7 +1,7 @@
 {
 	"theme_color": "#6D28D9",
 	"background_color": "#6D28D9",
-	"display": "minimal-ui",
+	"display": "standalone",
 	"scope": "/",
 	"start_url": "/?source=pwa",
 	"name": "BlitzCardMon: Blitz cards",
