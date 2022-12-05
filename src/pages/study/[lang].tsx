@@ -87,9 +87,9 @@ const RenderCards: React.FC<{ languageData: Language }> = ({
 			{cards.map((c, i) => {
 				if (!c.means.en) return undefined;
 				const SubTitle = (str: string, title?: string) => (
-					<h3 className="text-2xl" title={title}>
+					<h2 className="text-2xl" title={title}>
 						{str}
-					</h3>
+					</h2>
 				);
 				const content: (string | JSX.Element)[] = [];
 				content.push(SubTitle("Writings"));
