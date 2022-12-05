@@ -131,6 +131,153 @@ const cards: LanguageCard[] = [
 			en: ["taxi"],
 		},
 	},
+	{
+		learn: "打电话",
+		alternatives: ["打電話"],
+		pronounce: "dǎ diàn huà",
+		means: {
+			en: ["to make a phone call"],
+		},
+	},
+	{
+		learn: "大",
+		alternatives: [],
+		pronounce: "dà",
+		means: {
+			en: [
+				"big",
+				"huge",
+				"large",
+				"major",
+				"great",
+				"wide",
+				"deep",
+				"oldest",
+				"eldest",
+			],
+		},
+	},
+	{
+		learn: "的",
+		alternatives: [],
+		pronounce: "de",
+		means: {
+			en: [
+				"of",
+				"structural particle: used before a noun, linking it to preceding possessive or descriptive attributive",
+			],
+		},
+	},
+	{
+		learn: "点",
+		alternatives: ["點"],
+		pronounce: "diǎn",
+		means: {
+			en: [
+				"a little",
+				"a bit",
+				"drop (of liquid)",
+				"stain",
+				"spot",
+				"speck",
+				"jot",
+				"dot stroke (in Chinese characters)",
+				"decimal point",
+				"point",
+				"mark (of degree or level)",
+				"a place (with certain characteristics)",
+				"iron bell",
+				"o'clock",
+				"some",
+				"(point) unit of measurement for type",
+				"to touch on brieﬂy",
+				"to make clear",
+				"to light",
+				"to ignite",
+				"to kindle",
+				"period of time at night (24 minutes) (old)",
+				"a drip",
+				"to dibble",
+				"classiﬁer for small indeterminate quantities",
+			],
+		},
+	},
+	{
+		learn: "电脑",
+		alternatives: ["電腦"],
+		pronounce: "diàn nǎo",
+		means: {
+			en: ["computer", "CL:台[tái]"],
+		},
+	},
+	{
+		learn: "电视",
+		alternatives: ["電視"],
+		pronounce: "diàn shì",
+		means: {
+			en: ["Television", "TV", "CL:台[tái], 个[gè]"],
+		},
+	},
+	{
+		learn: "电影",
+		alternatives: ["電影"],
+		pronounce: "diàn yǐng",
+		means: {
+			en: ["movie", "film", "CL:部[bù], 幕[mù], 场[chǎng]"],
+		},
+	},
+	{
+		learn: "东西",
+		alternatives: ["東西"],
+		pronounce: "dōng xi",
+		means: {
+			en: ["thing", "stuff", "person", "CL:个[gè], 件[jiàn]"],
+		},
+	},
+	{
+		learn: "都",
+		alternatives: [],
+		pronounce: "dōu",
+		means: {
+			en: ["all, both", "entirely (due to) each", "even", "already"],
+		},
+	},
+	{
+		learn: "读",
+		alternatives: ["讀"],
+		pronounce: "dú",
+		means: {
+			en: [
+				"to read",
+				"to study",
+				"reading of word (i.e. pronunciation), similar to 拼音[pīn yīn]",
+			],
+		},
+	},
+	{
+		learn: "对不起",
+		alternatives: ["對不起"],
+		pronounce: "duì bu qǐ",
+		means: {
+			en: [
+				"I'm sorry",
+				"excuse me",
+				"pardon me",
+				"if you please",
+				"sorry? (please repeat)",
+				"unworthy",
+				"to let down",
+			],
+		},
+	},
+	{
+		learn: "多",
+		alternatives: [],
+		pronounce: "duō",
+		means: {
+			en: ["many", "much", "a lot of", "numerous", "multi-"],
+		},
+	},
 ];
 
 const mandarin: Language = {
